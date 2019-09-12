@@ -10,7 +10,7 @@ export const useFetch = url => {
       .then(y => {
         setState({ data: y, loading: false });
       });
-  }, [url, setState]);
+  }, [url, setState] );
 
   return state;
 };
