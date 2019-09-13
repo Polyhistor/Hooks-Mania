@@ -8,7 +8,7 @@ import React, {
 import { Hello } from "./Hello";
 import { useForm } from "./useForm";
 import { useFetch } from "./useFetchHook";
-import { Square } from "./square"
+import { Square } from "./square";
 
 const App = () => {
   // const [values, handleChange] = useForm({
@@ -51,7 +51,7 @@ const App = () => {
 
   const [count, setCount] = useState(0);
 
-  const favNums = [7, 21, , 37];
+  const favNums = [7, 21, 37];
 
   const increment = useCallback(
     n => {
@@ -65,9 +65,7 @@ const App = () => {
       <Hello increment={increment} />
       <div>Count: {count}</div>
       {favNums.map(e => {
-        return (
-
-        )
+        return <Square increment={increment} n={e} key={e} />;
       })}
     </div>
 

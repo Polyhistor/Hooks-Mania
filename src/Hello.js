@@ -4,8 +4,8 @@ import { useMeasure } from "./useMeasure";
 import { useCountRenders } from "./useCountRenders";
 
 export const Hello = React.memo(({ increment }) => {
-  useCountRenders();
-  return <button onClick={increment(5)}>Hello</button>;
+  // useCountRenders();
+  return <button onClick={increment}>Hello</button>;
 
   // const renders = useRef(0);
   // const [count, setCount] = useState(() =>
