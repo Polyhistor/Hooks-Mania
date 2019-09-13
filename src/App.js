@@ -1,24 +1,31 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useLayoutEffect,
+  useCallback
+} from "react";
 import { Hello } from "./Hello";
 import { useForm } from "./useForm";
 import { useFetch } from "./useFetchHook";
+import { Square } from "./square"
 
 const App = () => {
-  const [values, handleChange] = useForm({
-    email: "",
-    password: "",
-    firstName: ""
-  });
+  // const [values, handleChange] = useForm({
+  //   email: "",
+  //   password: "",
+  //   firstName: ""
+  // });
 
-  const [showHello, setShowHello] = useState(true);
+  // const [showHello, setShowHello] = useState(true);
 
-  const inputRef = useRef();
+  // const inputRef = useRef();
 
-  const hello = useRef(() => console.log("hello"));
+  // const hello = useRef(() => console.log("hello"));
 
-  useLayoutEffect(() => {
-    console.log(inputRef.current.getBoundingClientRect());
-  }, []);
+  // useLayoutEffect(() => {
+  //   console.log(inputRef.current.getBoundingClientRect());
+  // }, []);
 
   // useEffect(() => {
   //   const onMouseMove = e => {
@@ -42,39 +49,60 @@ const App = () => {
   // the second parameter is the dependecy values, which means we would like the effect
   // to take place when these values change
 
+  const [count, setCount] = useState(0);
+
+  const favNums = [7, 21, , 37];
+
+  const increment = useCallback(
+    n => {
+      setCount(c => c + n);
+    },
+    [setCount]
+  );
+
   return (
-    <>
-      <button onClick={() => setShowHello(!showHello)}> toggle</button>
-      {showHello && <Hello />}
-      <div style={{ textAlign: "center" }}>
-        <input
-          name="email"
-          placeholder="email"
-          value={values.email}
-          onChange={handleChange}
-        ></input>
-        <input
-          name="password"
-          placeholder="password"
-          value={values.password}
-          onChange={handleChange}
-        ></input>
-        <input
-          id="choso"
-          ref={inputRef}
-          name="firstName"
-          placeholder="firstName"
-          value={values.firstName}
-          onChange={handleChange}
-        ></input>
-        <button
-          onClick={() => {
-            inputRef.current.focus();
-            hello.current();
-          }}
-        ></button>
-      </div>
-    </>
+    <div>
+      <Hello increment={increment} />
+      <div>Count: {count}</div>
+      {favNums.map(e => {
+        return (
+
+        )
+      })}
+    </div>
+
+    //   <>
+    //     <button onClick={() => setShowHello(!showHello)}> toggle</button>
+    //     {showHello && <Hello />}
+    //     <div style={{ textAlign: "center" }}>
+    //       <input
+    //         name="email"
+    //         placeholder="email"
+    //         value={values.email}
+    //         onChange={handleChange}
+    //       ></input>
+    //       <input
+    //         name="password"
+    //         placeholder="password"
+    //         value={values.password}
+    //         onChange={handleChange}
+    //       ></input>
+    //       <input
+    //         id="choso"
+    //         ref={inputRef}
+    //         name="firstName"
+    //         placeholder="firstName"
+    //         value={values.firstName}
+    //         onChange={handleChange}
+    //       ></input>
+    //       <button
+    //         onClick={() => {
+    //           inputRef.current.focus();
+    //           hello.current();
+    //         }}
+    //       ></button>
+    //     </div>
+    //   </>
   );
 };
 
