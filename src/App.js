@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { Hello } from "./Hello";
 import { useForm } from "./useForm";
 import { useFetch } from "./useFetchHook";
@@ -13,7 +13,12 @@ const App = () => {
   const [showHello, setShowHello] = useState(true);
 
   const inputRef = useRef();
+
   const hello = useRef(() => console.log("hello"));
+
+  useLayoutEffect(() => {
+    console.log(inputRef.current.getBoundingClientRect());
+  }, []);
 
   // useEffect(() => {
   //   const onMouseMove = e => {
