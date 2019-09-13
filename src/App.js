@@ -12,15 +12,8 @@ const App = () => {
 
   const [showHello, setShowHello] = useState(true);
 
-  const [count, setCount] = useState(() =>
-    JSON.parse(localStorage.getItem("Count"))
-  );
-  const { data, loading } = useFetch(`http://numbersapi.com/${count}/trivia`);
   const inputRef = useRef();
-
-  useEffect(() => {
-    localStorage.setItem("Count", JSON.stringify(count));
-  }, [count]);
+  const hello = useRef(() => console.log("hello"));
 
   // useEffect(() => {
   //   const onMouseMove = e => {
@@ -46,11 +39,8 @@ const App = () => {
 
   return (
     <>
-      <div>{loading ? "loading..." : data}</div>
-      <div>count: {count}</div>
-      <button onClick={() => setCount(c => c + 1)}>increment</button>
-      {/* <button onClick={() => setShowHello(!showHello)}> toggle</button>
-      {showHello && <Hello />} */}
+      <button onClick={() => setShowHello(!showHello)}> toggle</button>
+      {showHello && <Hello />}
       <div style={{ textAlign: "center" }}>
         <input
           name="email"
@@ -72,7 +62,12 @@ const App = () => {
           value={values.firstName}
           onChange={handleChange}
         ></input>
-        <button onClick={() => inputRef.current.focus()}></button>
+        <button
+          onClick={() => {
+            inputRef.current.focus();
+            hello.current();
+          }}
+        ></button>
       </div>
     </>
   );
