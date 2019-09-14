@@ -15,7 +15,6 @@ import { useFetch } from "./useFetchHook";
 import { Square } from "./square";
 import About from "./About";
 import { userContext } from "./utilities/UserContext";
-import News from "./news";
 
 const App = () => {
   const [value, setValue] = useState("Hello from context");
@@ -40,7 +39,6 @@ const App = () => {
       <userContext.Provider value={providerValue}>
         <Route path="/" exact></Route>
         <Route path="/about/" exact component={About}></Route>
-        <Route path="/news/" exact component={News}></Route>
       </userContext.Provider>
     </Router>
   );
